@@ -9,3 +9,6 @@ No password will be stored in **Customer** table all login request with stored e
 **Issue Tracking & CI Tool**
 
 Github's "Issues" and "Action" mechanism used
+
+**Test**
+Standart methods on repositories are not tested.

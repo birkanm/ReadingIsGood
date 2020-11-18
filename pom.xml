@@ -16,7 +16,7 @@
     </parent>
 
     <properties>
-        <outputFolder>${project.build.directory}/${artifactId}</outputFolder>
+        <outputFolder>${project.build.directory}/${project.artifactId}</outputFolder>
     </properties>
 
     <dependencies>
