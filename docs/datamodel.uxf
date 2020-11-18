@@ -12,15 +12,15 @@ Book
 - name: Varchar
 - author: Varchar
 - price: BigInt
-- stock: Bigint
+- stock: Long
 - version: Long</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>530</x><y>280</y><w>150</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Table&gt;&gt;
-Order
+BOOK_ORDER
 --
 - pkid: Long
 - orderId: Long
-- date: TimeStamp
+- orderDate: Date
 - status: Varchar
-- comleteDate: TimeStamp</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>470</x><y>90</y><w>120</w><h>90</h></coordinates><panel_attributes>&lt;&lt;Table&gt;&gt;
+- completeDate: Date</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>470</x><y>90</y><w>120</w><h>90</h></coordinates><panel_attributes>&lt;&lt;Table&gt;&gt;
 Order_Book
 --
 - pkid: Long
