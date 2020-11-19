@@ -22,4 +22,6 @@ in memory H2 database is used
 Hint: 
 
 jdbcUrl: jdbc:h2:mem:testdb
-console Address: http://localhost:8080/h2-console
+console 
+
+Address: http://localhost:8080/h2-console
