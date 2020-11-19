@@ -17,8 +17,15 @@ public class CustomerService {
 
     private final CustomerConverterImpl converter;
 
-    public List<CustomerDto> findAll() {
+    public List<CustomerDto> getAllCustomer() {
+        //todo paging mechanism should be added
         List<Customer> allCustomer = repository.findAll();
         return converter.toDtoList(allCustomer);
+    }
+
+    public CustomerDto addCustomer(CustomerDto dto) {
+        Customer customer = converter.convertToEntity(dto);
+        Customer savedEntity = repository.save(customer);
+        return converter.convertToDto(savedEntity);
     }
 }

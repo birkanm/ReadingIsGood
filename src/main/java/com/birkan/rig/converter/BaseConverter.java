@@ -7,6 +7,8 @@ public abstract class BaseConverter<D, E> {
 
     public abstract void convertInEntity(D dto, E entity);
 
+    public abstract E convertToEntity(D dto);
+
     public abstract D convertToDto(E entity);
 
     public List<D> toDtoList(List<E> entityList) {

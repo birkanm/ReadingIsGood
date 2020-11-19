@@ -16,6 +16,13 @@ public class CustomerConverterImpl extends BaseConverter<CustomerDto, Customer> 
     }
 
     @Override
+    public Customer convertToEntity(CustomerDto dto) {
+        Customer entity = new Customer();
+        convertInEntity(dto, entity);
+        return entity;
+    }
+
+    @Override
     public CustomerDto convertToDto(Customer entity) {
         CustomerDto dto = new CustomerDto();
         dto.setPkid(entity.getPkid());
