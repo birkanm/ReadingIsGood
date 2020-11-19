@@ -23,4 +23,9 @@ public class CustomerOrder {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "PKID", name = "FK_ORDERID")
     private Order order;
+
+    public CustomerOrder(Customer customer, Order order) {
+        this.customer = customer;
+        this.order = order;
+    }
 }

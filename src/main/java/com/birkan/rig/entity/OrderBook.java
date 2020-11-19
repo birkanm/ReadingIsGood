@@ -24,4 +24,9 @@ public class OrderBook {
     @JoinColumn(referencedColumnName = "PKID", name = "FK_BOOKID")
     private Book book;
 
+    public OrderBook(Order order, Book book) {
+        this.order = order;
+        this.book = book;
+    }
+
 }
