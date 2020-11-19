@@ -15,9 +15,6 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <properties>
-        <outputFolder>${project.build.directory}/${project.artifactId}</outputFolder>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -70,22 +67,10 @@
     </dependencies>
 
     <build>
-        <outputDirectory>${outputFolder}</outputDirectory>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>1.3.1.RELEASE</version>
-                <configuration>
-                    <mainClass>com.birkan.rig.Application</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

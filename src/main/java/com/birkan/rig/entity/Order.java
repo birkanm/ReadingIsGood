@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "BOOK_ORDER")
+@Table(name = "PURCHASE_ORDER")
 @Data
 @NoArgsConstructor
 public class Order {

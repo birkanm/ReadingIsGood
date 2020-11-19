@@ -13,21 +13,21 @@ Book
 - author: Varchar
 - price: BigInt
 - stock: Long
-- version: Long</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>530</x><y>280</y><w>150</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Table&gt;&gt;
-BOOK_ORDER
+- version: Long</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>170</y><w>160</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;110;140;10</additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>170</y><w>50</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>30;110;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>710</x><y>90</y><w>120</w><h>90</h></coordinates><panel_attributes>&lt;&lt;Table&gt;&gt;
+Customer_Order
+--
+- pkid: Long
+- fk_cutomerId: Long
+- fl_orderId: Long</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>610</x><y>170</y><w>160</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;110;140;10</additional_attributes></element><element><id>Relation</id><coordinates><x>790</x><y>170</y><w>50</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>30;110;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>100</y><w>120</w><h>90</h></coordinates><panel_attributes>&lt;&lt;Table&gt;&gt;
+Order_Book
+--
+- pkid: Long
+- fk_orderId: Long
+- fl_bookId: Long</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>540</x><y>290</y><w>150</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Table&gt;&gt;
+Purchase_order
 --
 - pkid: Long
 - orderId: Long
 - orderDate: Date
 - status: Varchar
-- completeDate: Date</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>470</x><y>90</y><w>120</w><h>90</h></coordinates><panel_attributes>&lt;&lt;Table&gt;&gt;
-Order_Book
---
-- pkid: Long
-- fk_orderId: Long
-- fl_bookId: Long</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>170</y><w>160</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;110;140;10</additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>170</y><w>50</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>30;110;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>710</x><y>90</y><w>120</w><h>90</h></coordinates><panel_attributes>&lt;&lt;Table&gt;&gt;
-Customer_Order
---
-- pkid: Long
-- fk_cutomerId: Long
-- fl_orderId: Long</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>610</x><y>170</y><w>160</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;110;140;10</additional_attributes></element><element><id>Relation</id><coordinates><x>790</x><y>170</y><w>50</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>30;110;10;10</additional_attributes></element></diagram>
+- completeDate: Date</panel_attributes><additional_attributes></additional_attributes></element></diagram>

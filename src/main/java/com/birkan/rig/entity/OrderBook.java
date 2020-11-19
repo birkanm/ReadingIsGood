@@ -17,8 +17,8 @@ public class OrderBook {
     private Long pkid;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(referencedColumnName = "PKID", name = "FK_CUSTOMERID")
-    private Customer customer;
+    @JoinColumn(referencedColumnName = "PKID", name = "FK_ORDERID")
+    private Order order;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "PKID", name = "FK_BOOKID")
