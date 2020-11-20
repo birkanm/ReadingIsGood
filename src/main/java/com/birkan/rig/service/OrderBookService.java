@@ -1,5 +1,7 @@
 package com.birkan.rig.service;
 
+import com.birkan.rig.common.BookDto;
+import com.birkan.rig.common.PurchaseOrderDto;
 import com.birkan.rig.entity.Book;
 import com.birkan.rig.entity.Order;
 import com.birkan.rig.entity.OrderBook;
@@ -19,9 +21,9 @@ public class OrderBookService {
 
     private final BookRepository bookRepository;
 
-    public void saveOrderBook(Long orderId, Long bookId) {
-        Book book = bookRepository.findById(bookId).get();
-        Order order = orderRepository.findById(orderId).get();
+    public void saveOrderBook(PurchaseOrderDto orderDto, BookDto bookDto) {
+        Book book = bookRepository.findById(bookDto.getPkid()).get();
+        Order order = orderRepository.findById(orderDto.getPkid()).get();
         repository.save(new OrderBook(order, book));
     }
 }

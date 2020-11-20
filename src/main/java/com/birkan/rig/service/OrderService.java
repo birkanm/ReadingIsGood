@@ -2,8 +2,8 @@ package com.birkan.rig.service;
 
 import com.birkan.rig.common.BookDto;
 import com.birkan.rig.common.EnumOrderStatus;
-import com.birkan.rig.common.OrderDto;
 import com.birkan.rig.common.PurchaseBookDto;
+import com.birkan.rig.common.PurchaseOrderDto;
 import com.birkan.rig.converter.OrderConverterImpl;
 import com.birkan.rig.entity.Order;
 import com.birkan.rig.exception.NoStockLeftException;
@@ -29,16 +29,14 @@ public class OrderService {
 
     private final OrderBookService orderBookService;
 
-    private final CustomerOrderService customerOrderService;
-
     private final Random random = new Random();
 
     //todo please refactor!!!
     @Transactional
-    public OrderDto saveNewOrder(OrderDto dto) {
+    public PurchaseOrderDto saveNewOrder(PurchaseOrderDto dto) {
         List<PurchaseBookDto> orderedBooks = dto.getOrderedBooks();
 
-        List<Long> bookIds = orderedBooks.stream().map(PurchaseBookDto::getBookId)
+        List<Long> bookIds = orderedBooks.stream().map(PurchaseBookDto::getBookDto).map(BookDto::getPkid)
                                          .collect(Collectors.toList());
 
         //check stock
@@ -49,7 +47,7 @@ public class OrderService {
 
         //update book stock
         List<BookDto> collect =
-            orderedBooks.stream().map(k -> bookService.sellBook(k.getBookId(), k.getQuantity())).collect(
+            orderedBooks.stream().map(k -> bookService.sellBook(k.getBookDto(), k.getQuantity())).collect(
                 Collectors.toList());
 
         //save order
@@ -57,23 +55,19 @@ public class OrderService {
         dto.setOrderId(random.nextLong());
         dto.setOrderDate(new Date());
         Order savedOrder = repository.save(converter.convertToEntity(dto));
-        OrderDto savedOrderDto = converter.convertToDto(savedOrder);
+        PurchaseOrderDto savedPurchaseOrderDto = converter.convertToDto(savedOrder);
 
         //save order book
-        orderedBooks.forEach(k -> orderBookService.saveOrderBook(savedOrderDto.getPkid(), k.getBookId()));
-        savedOrderDto.setOrderedBooks(dto.getOrderedBooks());
+        orderedBooks.forEach(k -> orderBookService.saveOrderBook(savedPurchaseOrderDto, k.getBookDto()));
+        savedPurchaseOrderDto.setOrderedBooks(dto.getOrderedBooks());
 
-        //save customer order
-        customerOrderService.saveCustomerOrder(savedOrderDto.getPkid(), dto.getCustomerId());
-        savedOrderDto.setCustomerId(dto.getCustomerId());
-
-        return savedOrderDto;
+        return savedPurchaseOrderDto;
     }
 
     private boolean isStocksAvailable(List<BookDto> books, List<PurchaseBookDto> bookInOrder) {
         for (BookDto book : books) {
             for (PurchaseBookDto purchaseBookDto : bookInOrder) {
-                if (book.getPkid().equals(purchaseBookDto.getBookId()) &&
+                if (book.getPkid().equals(purchaseBookDto.getBookDto().getPkid()) &&
                     book.getStock() < purchaseBookDto.getQuantity()) {
                     return false;
                 }

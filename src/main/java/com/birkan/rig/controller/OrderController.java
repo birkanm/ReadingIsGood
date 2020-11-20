@@ -1,6 +1,6 @@
 package com.birkan.rig.controller;
 
-import com.birkan.rig.common.OrderDto;
+import com.birkan.rig.common.PurchaseOrderDto;
 import com.birkan.rig.service.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ public class OrderController {
     private final OrderService service;
 
     @PostMapping
-    public ResponseEntity<OrderDto> addOrder(@RequestBody OrderDto dto) {
+    public ResponseEntity<PurchaseOrderDto> addOrder(@RequestBody PurchaseOrderDto dto) {
         return ResponseEntity.ok(service.saveNewOrder(dto));
     }
 

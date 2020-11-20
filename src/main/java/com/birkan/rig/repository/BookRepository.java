@@ -12,9 +12,12 @@ import java.util.Optional;
 public interface BookRepository extends JpaRepository<Book, Long> {
 
     @Query("SELECT b FROM Book b WHERE b.pkid in :idList")
-    List<Book> fetchCustomersByOrgId(List<Long> idList);
+    List<Book> fetchBooksByIdList(List<Long> idList);
 
     @Override
-    @Lock(LockModeType.OPTIMISTIC_FORCE_INCREMENT)
     Optional<Book> findById(Long aLong);
+
+    @Lock(LockModeType.OPTIMISTIC_FORCE_INCREMENT)
+    @Query("SELECT b FROM Book b WHERE b.pkid = :aLong")
+    Optional<Book> findBookForSellingById(Long aLong);
 }

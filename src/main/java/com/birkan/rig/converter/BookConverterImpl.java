@@ -2,24 +2,31 @@ package com.birkan.rig.converter;
 
 import com.birkan.rig.common.BookDto;
 import com.birkan.rig.entity.Book;
+import com.birkan.rig.repository.BookRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 @Component
+@AllArgsConstructor
 public class BookConverterImpl extends BaseConverter<BookDto, Book> {
 
+    private final BookRepository bookRepository;
+
     @Override
-    public void convertInEntity(BookDto dto, Book entity) {
+    public Book convertToEntity(BookDto dto) {
+        Book entity;
+        if (Objects.nonNull(dto.getPkid())) {
+            entity = bookRepository.findById(dto.getPkid()).get();
+        } else {
+            entity = new Book();
+        }
         entity.setAuthor(dto.getAuthor());
         entity.setName(dto.getName());
         entity.setPrice(dto.getPrice());
         entity.setStock(dto.getStock());
-    }
-
-    @Override
-    public Book convertToEntity(BookDto dto) {
-        Book book = new Book();
-        convertInEntity(dto, book);
-        return book;
+        return entity;
     }
 
     @Override

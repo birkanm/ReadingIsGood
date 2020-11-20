@@ -21,6 +21,10 @@ public class Order {
     @Column(name = "ORDERID")
     private Long orderId;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(referencedColumnName = "PKID", name = "FK_CUSTOMERID")
+    private Customer customer;
+
     @Column(name = "ORDER_DATE")
     private Date orderDate;
 

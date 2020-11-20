@@ -18,12 +18,12 @@ public class BookService {
     private final BookConverterImpl converter;
 
     public List<BookDto> getBooksByBookIds(List<Long> idList) {
-        List<Book> books = repository.fetchCustomersByOrgId(idList);
+        List<Book> books = repository.fetchBooksByIdList(idList);
         return converter.toDtoList(books);
     }
 
-    public BookDto sellBook(Long bookId, Integer soldQuantity) {
-        Book book = repository.findById(bookId).get();
+    public BookDto sellBook(BookDto bookDto, Integer soldQuantity) {
+        Book book = repository.findBookForSellingById(bookDto.getPkid()).get();
         book.setStock(book.getStock() - soldQuantity);
         return converter.convertToDto(repository.save(book));
     }

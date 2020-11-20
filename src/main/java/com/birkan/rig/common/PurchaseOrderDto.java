@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class OrderDto {
+public class PurchaseOrderDto {
 
     private Long pkid;
 
@@ -20,7 +20,7 @@ public class OrderDto {
 
     private Date completeDate;
 
-    private Long customerId;
+    private CustomerDto customerDto;
 
     private List<PurchaseBookDto> orderedBooks;
 

@@ -2,23 +2,31 @@ package com.birkan.rig.converter;
 
 import com.birkan.rig.common.CustomerDto;
 import com.birkan.rig.entity.Customer;
+import com.birkan.rig.repository.CustomerRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 @Component
+@AllArgsConstructor
 public class CustomerConverterImpl extends BaseConverter<CustomerDto, Customer> {
 
+    private final CustomerRepository customerRepository;
+
     @Override
-    public void convertInEntity(CustomerDto dto, Customer entity) {
+    public Customer convertToEntity(CustomerDto dto) {
+        Customer entity;
+        if (Objects.nonNull(dto.getPkid())) {
+            entity = customerRepository.findById(dto.getPkid()).get();
+        } else {
+            entity = new Customer();
+        }
+
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
         entity.setEmail(dto.getEmail());
         entity.setPhone(dto.getPhone());
-    }
-
-    @Override
-    public Customer convertToEntity(CustomerDto dto) {
-        Customer entity = new Customer();
-        convertInEntity(dto, entity);
         return entity;
     }
 

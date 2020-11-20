@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PurchaseBookDto {
 
-    private Long bookId;
+    private BookDto bookDto;
 
     private Integer quantity;
 }
