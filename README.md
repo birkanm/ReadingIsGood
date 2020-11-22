@@ -28,4 +28,18 @@ _Hint For Connection_:
 
 jdbcUrl: jdbc:h2:mem:testdb
 
-Address: http://localhost:8080/h2-console
+console is enables, on its default address
+ 
+http://localhost:8080/h2-console
+
+
+**Authorization**
+
+Program has that functionality after getting JWT token from, http://localhost:8080/login
+
+with an email address (hint: no password required)
+
+  
+The example from the website below is used.
+ 
+https://blog.softtek.com/en/token-based-api-authentication-with-spring-and-jwt
