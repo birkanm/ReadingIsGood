@@ -1,0 +1,451 @@
+{
+  "variables": [],
+  "info": {
+    "name": "getir-birkan",
+    "_postman_id": "b7db4420-7b13-7878-fdbb-d215ed3015bd",
+    "description": "",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "addNewCustomer",
+      "request": {
+        "url": "http://localhost:8080/api/customers",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Kent\",\n  \"surname\": \"Beck\",\n  \"email\": \"abc@example.com\",\n  \"phone\": \"+14587545\"\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "addNewCustomer-validation Error",
+      "request": {
+        "url": "http://localhost:8080/api/customers",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Kent\",\n  \"surname\": \"Beck\",\n  \"email\": \"abc@example.com\"\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "addNewOrder",
+      "request": {
+        "url": "http://localhost:8080/api/orders",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"customerId\": 1,\n  \"orderedBooks\": [\n    {\n      \"bookDto\": {\n        \"pkid\": 1\n      },\n      \"quantity\": 2\n    }\n  ]\n}\n"
+        },
+        "description": ""
+      },
+      "response": [
+        {
+          "id": "ab14d7de-6c3e-4bdd-8409-9997191ca74b",
+          "name": "addNewOrder",
+          "originalRequest": {
+            "url": "http://localhost:8080/api/orders",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": 1,\n  \"orderedBooks\": [\n    {\n      \"bookId\": 1,\n      \"quantity\": 1\n    }\n  ]\n}"
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "_postman_previewtype": "text",
+          "header": [
+            {
+              "name": "connection",
+              "key": "connection",
+              "value": "close",
+              "description": "Options that are desired for the connection"
+            },
+            {
+              "name": "content-type",
+              "key": "content-type",
+              "value": "application/json;charset=UTF-8",
+              "description": "The mime type of this content"
+            },
+            {
+              "name": "date",
+              "key": "date",
+              "value": "Thu, 19 Nov 2020 18:57:22 GMT",
+              "description": "The date and time that the message was sent"
+            },
+            {
+              "name": "transfer-encoding",
+              "key": "transfer-encoding",
+              "value": "chunked",
+              "description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+            }
+          ],
+          "cookie": [],
+          "responseTime": 33,
+          "body": "{\"timestamp\":\"2020-11-19T18:57:22.079+0000\",\"status\":400,\"error\":\"Bad Request\",\"errors\":[{\"codes\":[\"NotNull.customerDto.phone\",\"NotNull.phone\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.phone\",\"phone\"],\"arguments\":null,\"defaultMessage\":\"phone\",\"code\":\"phone\"}],\"defaultMessage\":\"Phone cannot be null\",\"objectName\":\"customerDto\",\"field\":\"phone\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"},{\"codes\":[\"NotNull.customerDto.name\",\"NotNull.name\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.name\",\"name\"],\"arguments\":null,\"defaultMessage\":\"name\",\"code\":\"name\"}],\"defaultMessage\":\"Name cannot be null\",\"objectName\":\"customerDto\",\"field\":\"name\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"},{\"codes\":[\"NotNull.customerDto.email\",\"NotNull.email\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.email\",\"email\"],\"arguments\":null,\"defaultMessage\":\"email\",\"code\":\"email\"}],\"defaultMessage\":\"Email cannot be null\",\"objectName\":\"customerDto\",\"field\":\"email\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"},{\"codes\":[\"NotNull.customerDto.surname\",\"NotNull.surname\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.surname\",\"surname\"],\"arguments\":null,\"defaultMessage\":\"surname\",\"code\":\"surname\"}],\"defaultMessage\":\"Surname cannot be null\",\"objectName\":\"customerDto\",\"field\":\"surname\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"}],\"message\":\"Validation failed for object='customerDto'. Error count: 4\",\"path\":\"/api/orders\"}"
+        }
+      ]
+    },
+    {
+      "name": "addNewOrder-negativeQuantity",
+      "request": {
+        "url": "http://localhost:8080/api/orders",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"customerId\": 1,\n  \"orderedBooks\": [\n    {\n      \"bookDto\": {\n        \"pkid\": 1\n      },\n      \"quantity\": -2\n    }\n  ]\n}\n"
+        },
+        "description": ""
+      },
+      "response": [
+        {
+          "id": "d325787a-baab-489a-969b-4a24229e55c3",
+          "name": "addNewOrder",
+          "originalRequest": {
+            "url": "http://localhost:8080/api/orders",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": 1,\n  \"orderedBooks\": [\n    {\n      \"bookId\": 1,\n      \"quantity\": 1\n    }\n  ]\n}"
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "_postman_previewtype": "text",
+          "header": [
+            {
+              "name": "connection",
+              "key": "connection",
+              "value": "close",
+              "description": "Options that are desired for the connection"
+            },
+            {
+              "name": "content-type",
+              "key": "content-type",
+              "value": "application/json;charset=UTF-8",
+              "description": "The mime type of this content"
+            },
+            {
+              "name": "date",
+              "key": "date",
+              "value": "Thu, 19 Nov 2020 18:57:22 GMT",
+              "description": "The date and time that the message was sent"
+            },
+            {
+              "name": "transfer-encoding",
+              "key": "transfer-encoding",
+              "value": "chunked",
+              "description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+            }
+          ],
+          "cookie": [],
+          "responseTime": 33,
+          "body": "{\"timestamp\":\"2020-11-19T18:57:22.079+0000\",\"status\":400,\"error\":\"Bad Request\",\"errors\":[{\"codes\":[\"NotNull.customerDto.phone\",\"NotNull.phone\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.phone\",\"phone\"],\"arguments\":null,\"defaultMessage\":\"phone\",\"code\":\"phone\"}],\"defaultMessage\":\"Phone cannot be null\",\"objectName\":\"customerDto\",\"field\":\"phone\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"},{\"codes\":[\"NotNull.customerDto.name\",\"NotNull.name\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.name\",\"name\"],\"arguments\":null,\"defaultMessage\":\"name\",\"code\":\"name\"}],\"defaultMessage\":\"Name cannot be null\",\"objectName\":\"customerDto\",\"field\":\"name\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"},{\"codes\":[\"NotNull.customerDto.email\",\"NotNull.email\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.email\",\"email\"],\"arguments\":null,\"defaultMessage\":\"email\",\"code\":\"email\"}],\"defaultMessage\":\"Email cannot be null\",\"objectName\":\"customerDto\",\"field\":\"email\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"},{\"codes\":[\"NotNull.customerDto.surname\",\"NotNull.surname\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.surname\",\"surname\"],\"arguments\":null,\"defaultMessage\":\"surname\",\"code\":\"surname\"}],\"defaultMessage\":\"Surname cannot be null\",\"objectName\":\"customerDto\",\"field\":\"surname\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"}],\"message\":\"Validation failed for object='customerDto'. Error count: 4\",\"path\":\"/api/orders\"}"
+        }
+      ]
+    },
+    {
+      "name": "addNewOrder-negativeBookId",
+      "request": {
+        "url": "http://localhost:8080/api/orders",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"customerId\": 1,\n  \"orderedBooks\": [\n    {\n      \"bookDto\": {\n        \"pkid\": -1\n      },\n      \"quantity\": 3\n    }\n  ]\n}\n"
+        },
+        "description": ""
+      },
+      "response": [
+        {
+          "id": "3312f7a2-e28c-4d33-b317-26ebc45f8f6e",
+          "name": "addNewOrder",
+          "originalRequest": {
+            "url": "http://localhost:8080/api/orders",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": 1,\n  \"orderedBooks\": [\n    {\n      \"bookId\": 1,\n      \"quantity\": 1\n    }\n  ]\n}"
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "_postman_previewtype": "text",
+          "header": [
+            {
+              "name": "connection",
+              "key": "connection",
+              "value": "close",
+              "description": "Options that are desired for the connection"
+            },
+            {
+              "name": "content-type",
+              "key": "content-type",
+              "value": "application/json;charset=UTF-8",
+              "description": "The mime type of this content"
+            },
+            {
+              "name": "date",
+              "key": "date",
+              "value": "Thu, 19 Nov 2020 18:57:22 GMT",
+              "description": "The date and time that the message was sent"
+            },
+            {
+              "name": "transfer-encoding",
+              "key": "transfer-encoding",
+              "value": "chunked",
+              "description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+            }
+          ],
+          "cookie": [],
+          "responseTime": 33,
+          "body": "{\"timestamp\":\"2020-11-19T18:57:22.079+0000\",\"status\":400,\"error\":\"Bad Request\",\"errors\":[{\"codes\":[\"NotNull.customerDto.phone\",\"NotNull.phone\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.phone\",\"phone\"],\"arguments\":null,\"defaultMessage\":\"phone\",\"code\":\"phone\"}],\"defaultMessage\":\"Phone cannot be null\",\"objectName\":\"customerDto\",\"field\":\"phone\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"},{\"codes\":[\"NotNull.customerDto.name\",\"NotNull.name\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.name\",\"name\"],\"arguments\":null,\"defaultMessage\":\"name\",\"code\":\"name\"}],\"defaultMessage\":\"Name cannot be null\",\"objectName\":\"customerDto\",\"field\":\"name\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"},{\"codes\":[\"NotNull.customerDto.email\",\"NotNull.email\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.email\",\"email\"],\"arguments\":null,\"defaultMessage\":\"email\",\"code\":\"email\"}],\"defaultMessage\":\"Email cannot be null\",\"objectName\":\"customerDto\",\"field\":\"email\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"},{\"codes\":[\"NotNull.customerDto.surname\",\"NotNull.surname\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.surname\",\"surname\"],\"arguments\":null,\"defaultMessage\":\"surname\",\"code\":\"surname\"}],\"defaultMessage\":\"Surname cannot be null\",\"objectName\":\"customerDto\",\"field\":\"surname\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"}],\"message\":\"Validation failed for object='customerDto'. Error count: 4\",\"path\":\"/api/orders\"}"
+        }
+      ]
+    },
+    {
+      "name": "addNewOrder-NoCustomerId",
+      "request": {
+        "url": "http://localhost:8080/api/orders",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"orderedBooks\": [\n    {\n      \"bookDto\": {\n        \"pkid\": 1\n      },\n      \"quantity\": -2\n    }\n  ]\n}\n"
+        },
+        "description": ""
+      },
+      "response": [
+        {
+          "id": "d490931a-d127-47e4-9f59-5c93e0ddacdb",
+          "name": "addNewOrder",
+          "originalRequest": {
+            "url": "http://localhost:8080/api/orders",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": 1,\n  \"orderedBooks\": [\n    {\n      \"bookId\": 1,\n      \"quantity\": 1\n    }\n  ]\n}"
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "_postman_previewtype": "text",
+          "header": [
+            {
+              "name": "connection",
+              "key": "connection",
+              "value": "close",
+              "description": "Options that are desired for the connection"
+            },
+            {
+              "name": "content-type",
+              "key": "content-type",
+              "value": "application/json;charset=UTF-8",
+              "description": "The mime type of this content"
+            },
+            {
+              "name": "date",
+              "key": "date",
+              "value": "Thu, 19 Nov 2020 18:57:22 GMT",
+              "description": "The date and time that the message was sent"
+            },
+            {
+              "name": "transfer-encoding",
+              "key": "transfer-encoding",
+              "value": "chunked",
+              "description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+            }
+          ],
+          "cookie": [],
+          "responseTime": 33,
+          "body": "{\"timestamp\":\"2020-11-19T18:57:22.079+0000\",\"status\":400,\"error\":\"Bad Request\",\"errors\":[{\"codes\":[\"NotNull.customerDto.phone\",\"NotNull.phone\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.phone\",\"phone\"],\"arguments\":null,\"defaultMessage\":\"phone\",\"code\":\"phone\"}],\"defaultMessage\":\"Phone cannot be null\",\"objectName\":\"customerDto\",\"field\":\"phone\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"},{\"codes\":[\"NotNull.customerDto.name\",\"NotNull.name\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.name\",\"name\"],\"arguments\":null,\"defaultMessage\":\"name\",\"code\":\"name\"}],\"defaultMessage\":\"Name cannot be null\",\"objectName\":\"customerDto\",\"field\":\"name\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"},{\"codes\":[\"NotNull.customerDto.email\",\"NotNull.email\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.email\",\"email\"],\"arguments\":null,\"defaultMessage\":\"email\",\"code\":\"email\"}],\"defaultMessage\":\"Email cannot be null\",\"objectName\":\"customerDto\",\"field\":\"email\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"},{\"codes\":[\"NotNull.customerDto.surname\",\"NotNull.surname\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.surname\",\"surname\"],\"arguments\":null,\"defaultMessage\":\"surname\",\"code\":\"surname\"}],\"defaultMessage\":\"Surname cannot be null\",\"objectName\":\"customerDto\",\"field\":\"surname\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"}],\"message\":\"Validation failed for object='customerDto'. Error count: 4\",\"path\":\"/api/orders\"}"
+        }
+      ]
+    },
+    {
+      "name": "login",
+      "request": {
+        "url": "http://localhost:8080/login",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "email",
+              "value": "btom@example.com",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "24324",
+              "description": "",
+              "type": "text"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "response": [
+        {
+          "id": "a0a06ba2-36fb-4439-bd9f-45fa8686ace4",
+          "name": "addNewOrder",
+          "originalRequest": {
+            "url": "http://localhost:8080/api/orders",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": 1,\n  \"orderedBooks\": [\n    {\n      \"bookId\": 1,\n      \"quantity\": 1\n    }\n  ]\n}"
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "_postman_previewtype": "text",
+          "header": [
+            {
+              "name": "connection",
+              "key": "connection",
+              "value": "close",
+              "description": "Options that are desired for the connection"
+            },
+            {
+              "name": "content-type",
+              "key": "content-type",
+              "value": "application/json;charset=UTF-8",
+              "description": "The mime type of this content"
+            },
+            {
+              "name": "date",
+              "key": "date",
+              "value": "Thu, 19 Nov 2020 18:57:22 GMT",
+              "description": "The date and time that the message was sent"
+            },
+            {
+              "name": "transfer-encoding",
+              "key": "transfer-encoding",
+              "value": "chunked",
+              "description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+            }
+          ],
+          "cookie": [],
+          "responseTime": 33,
+          "body": "{\"timestamp\":\"2020-11-19T18:57:22.079+0000\",\"status\":400,\"error\":\"Bad Request\",\"errors\":[{\"codes\":[\"NotNull.customerDto.phone\",\"NotNull.phone\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.phone\",\"phone\"],\"arguments\":null,\"defaultMessage\":\"phone\",\"code\":\"phone\"}],\"defaultMessage\":\"Phone cannot be null\",\"objectName\":\"customerDto\",\"field\":\"phone\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"},{\"codes\":[\"NotNull.customerDto.name\",\"NotNull.name\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.name\",\"name\"],\"arguments\":null,\"defaultMessage\":\"name\",\"code\":\"name\"}],\"defaultMessage\":\"Name cannot be null\",\"objectName\":\"customerDto\",\"field\":\"name\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"},{\"codes\":[\"NotNull.customerDto.email\",\"NotNull.email\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.email\",\"email\"],\"arguments\":null,\"defaultMessage\":\"email\",\"code\":\"email\"}],\"defaultMessage\":\"Email cannot be null\",\"objectName\":\"customerDto\",\"field\":\"email\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"},{\"codes\":[\"NotNull.customerDto.surname\",\"NotNull.surname\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"customerDto.surname\",\"surname\"],\"arguments\":null,\"defaultMessage\":\"surname\",\"code\":\"surname\"}],\"defaultMessage\":\"Surname cannot be null\",\"objectName\":\"customerDto\",\"field\":\"surname\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"}],\"message\":\"Validation failed for object='customerDto'. Error count: 4\",\"path\":\"/api/orders\"}"
+        }
+      ]
+    },
+    {
+      "name": "queryOrderDetailById",
+      "request": {
+        "url": "http://localhost:8080/api/orders/1",
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "queryOrdersByCustomerId",
+      "request": {
+        "url": "http://localhost:8080/api/orders/customer/10",
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "description": ""
+      },
+      "response": []
+    }
+  ]
+}

@@ -3,6 +3,8 @@ package com.birkan.rig.controller;
 import com.birkan.rig.common.CustomerDto;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +16,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@AllArgsConstructor
 public class LoginController {
+
+    private final Logger logger;
 
     @PostMapping("login")
     public CustomerDto login(@RequestParam("email") String email) {
@@ -22,6 +27,7 @@ public class LoginController {
         CustomerDto customerDto = new CustomerDto();
         customerDto.setEmail(email);
         customerDto.setToken(token);
+        logger.debug("User: {} logged-In", email);
         return customerDto;
     }
 

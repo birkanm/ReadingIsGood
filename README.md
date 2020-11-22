@@ -2,7 +2,7 @@
 
 * Aspect Oriented Programming is used with default logging mechanism to log what was happened on Specific entities. (such as Book and Order) more generic crossfunctional mechanism could easily build on AOP.  
 * Standart Html headers & codes used in Error cases no special class implemented, UI side should parse error message
-* Validation done by javax validation, all user inputs fields intended to validate  
+* Validation done by javax validation, all user inputs fields intended to get validated  
 
 **Data Model**
 
@@ -43,3 +43,12 @@ with an email address (hint: no password required)
 The example from the website below is used.
  
 https://blog.softtek.com/en/token-based-api-authentication-with-spring-and-jwt
+
+**Open Api Specification** 
+
+This feature enabled on default Url
+I am unable to activate Authorization button that you should login first and send Authorization token for all requests
+
+**Postman**
+
+You can find created workspace under **docs** folder with the name _"getir-birkan.postman_collection"_

@@ -1,4 +1,4 @@
-package com.birkan.rig;
+package com.birkan.rig.configuration;
 
 import io.jsonwebtoken.*;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

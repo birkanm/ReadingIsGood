@@ -1,5 +1,6 @@
 package com.birkan.rig;
 
+import com.birkan.rig.configuration.JWTAuthorizationFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InjectionPoint;
@@ -25,9 +26,6 @@ public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-
-        System.out.println("Hello World!");
-
     }
 
     @Bean
@@ -48,6 +46,22 @@ public class Application {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/login")
                 .permitAll()
+                // allow anonymous resource requests
+                .antMatchers(
+                    HttpMethod.GET,
+                    "/",
+                    "/v2/api-docs",           // swagger
+                    "/webjars/**",            // swagger-ui webjars
+                    "/images/**",
+                    "/swagger-resources/**",  // swagger-ui resources
+                    "/configuration/**",      // swagger configuration
+                    "/*.html",
+                    "/favicon.ico",
+                    "/**/*.html",
+                    "/**/*.css",
+                    "/**/*.js",
+                    "/swagger-ui/**"
+                ).permitAll()
                 .anyRequest().authenticated();
         }
     }
