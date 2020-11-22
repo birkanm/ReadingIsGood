@@ -16,10 +16,6 @@ Please check data diagram under **docs** folder (.png version is available)
 
 Github's "Issues" and "Action" mechanism used
 
-**Test**
-
-Standart methods on repositories are not tested.
-
 **Database**
 
 in memory H2 database is used
@@ -52,3 +48,7 @@ I am unable to activate Authorization button that you should login first and sen
 **Postman**
 
 You can find created workspace under **docs** folder with the name _"getir-birkan.postman_collection"_
+
+**Release**
+
+Final relase could be found on Releases section
