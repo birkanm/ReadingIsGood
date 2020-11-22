@@ -21,7 +21,7 @@ public class CustomerService {
 
     private final Logger logger;
 
-    public CustomerDto addCustomer(CustomerDto dto) {
+    public CustomerDto addCustomer(CustomerDto dto) throws Exception {
         Customer customer = converter.convertToEntity(dto);
         Customer savedEntity = repository.save(customer);
         return converter.convertToDto(savedEntity);

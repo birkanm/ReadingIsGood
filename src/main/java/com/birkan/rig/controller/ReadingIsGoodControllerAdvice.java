@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class ReadingIsGoodAdvice {
+public class ReadingIsGoodControllerAdvice {
 
     @ResponseBody
     @ExceptionHandler(NoStockLeftException.class)
@@ -29,7 +29,7 @@ public class ReadingIsGoodAdvice {
     @ResponseBody
     @ExceptionHandler( {Exception.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    String allOtherExceptions(Exception ex) {
+    String dropAll(Exception ex) {
         return ex.getMessage();
     }
 }

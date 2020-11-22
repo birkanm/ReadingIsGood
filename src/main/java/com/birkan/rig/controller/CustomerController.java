@@ -19,7 +19,7 @@ public class CustomerController {
     private final CustomerService service;
 
     @PostMapping
-    public ResponseEntity<CustomerDto> addCustomer(@Valid @RequestBody CustomerDto dto) {
+    public ResponseEntity<CustomerDto> addCustomer(@Valid @RequestBody CustomerDto dto) throws Exception {
         return ResponseEntity.ok(service.addCustomer(dto));
     }
 
