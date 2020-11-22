@@ -1,5 +1,7 @@
 # ReadingIsGood
 
+Aspect Oriented Programming is used with default logging mechanism to log what was happened on Specific entities. (such as Book and Order) more generic crossfunctional mechanism could easily build on AOP.  
+
 **Data Model**
 
 Table "Stock" not created, **optimistic lock** will be used in **Book** class to handle stock, Moreover it will help prevent multi transaction at the same time on single book.
@@ -19,9 +21,8 @@ Standart methods on repositories are not tested.
 
 in memory H2 database is used
  
-Hint: 
+_Hint_: 
 
 jdbcUrl: jdbc:h2:mem:testdb
-console 
 
 Address: http://localhost:8080/h2-console

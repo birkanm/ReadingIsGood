@@ -28,4 +28,6 @@ public class CustomerDto {
     @NotNull(message = "Phone cannot be null")
     @Size(min = 3, max = 14, message = "Phone length should be between 3-14 characters ")
     private String phone;
+
+    private String token;
 }

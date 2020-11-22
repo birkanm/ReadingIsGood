@@ -25,4 +25,11 @@ public class ReadingIsGoodAdvice {
     String customerNotFound(CustomerNotFoundException ex) {
         return ex.getMessage();
     }
+
+    @ResponseBody
+    @ExceptionHandler( {Exception.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    String allOtherExceptions(Exception ex) {
+        return ex.getMessage();
+    }
 }
