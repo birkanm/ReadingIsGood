@@ -7,21 +7,17 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
-public class BookConverterImpl extends BaseConverter<BookDto, Book> {
+public class BookConverterImpl implements BaseConverter<BookDto, Book> {
 
     private final BookRepository bookRepository;
 
     @Override
     public Book convertToEntity(BookDto dto) {
-        Book entity;
-        if (Objects.nonNull(dto.getPkid())) {
-            entity = bookRepository.findById(dto.getPkid()).get();
-        } else {
-            entity = new Book();
-        }
+        Book entity = getOrCreateEmptyEntity(dto.getPkid());
         entity.setAuthor(dto.getAuthor());
         entity.setName(dto.getName());
         entity.setPrice(dto.getPrice());
@@ -38,5 +34,15 @@ public class BookConverterImpl extends BaseConverter<BookDto, Book> {
         dto.setPrice(entity.getPrice());
         dto.setStock(entity.getStock());
         return dto;
+    }
+
+    private Book getOrCreateEmptyEntity(Long entityId) {
+        if (Objects.nonNull(entityId)) {
+            Optional<Book> optBook = bookRepository.findById(entityId);
+            if (optBook.isPresent()) {
+                return optBook.get();
+            }
+        }
+        return new Book();
     }
 }

@@ -3,13 +3,14 @@ package com.birkan.rig.converter;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class BaseConverter<D, E> {
+public interface BaseConverter<D, E> {
 
-    public abstract E convertToEntity(D dto);
+    E convertToEntity(D dto);
 
-    public abstract D convertToDto(E entity);
+    D convertToDto(E entity);
 
-    public List<D> toDtoList(List<E> entityList) {
+    default List<D> toDtoList(List<E> entityList) {
         return entityList.stream().map(this::convertToDto).collect(Collectors.toList());
     }
+
 }

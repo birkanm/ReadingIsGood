@@ -16,17 +16,21 @@ public class OrderBook {
     @Column(name = "PKID")
     private Long pkid;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(referencedColumnName = "PKID", name = "FK_ORDERID")
     private Order order;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(referencedColumnName = "PKID", name = "FK_BOOKID")
     private Book book;
 
-    public OrderBook(Order order, Book book) {
+    @Column(name = "QUANTITY")
+    private Integer quantity;
+
+    public OrderBook(Order order, Book book, Integer quantity) {
         this.order = order;
         this.book = book;
+        this.quantity = quantity;
     }
-
 }
+

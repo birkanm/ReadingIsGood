@@ -7,22 +7,17 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
-public class CustomerConverterImpl extends BaseConverter<CustomerDto, Customer> {
+public class CustomerConverterImpl implements BaseConverter<CustomerDto, Customer> {
 
     private final CustomerRepository customerRepository;
 
     @Override
     public Customer convertToEntity(CustomerDto dto) {
-        Customer entity;
-        if (Objects.nonNull(dto.getPkid())) {
-            entity = customerRepository.findById(dto.getPkid()).get();
-        } else {
-            entity = new Customer();
-        }
-
+        Customer entity = getOrCreateEmptyEntity(dto.getPkid());
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
         entity.setEmail(dto.getEmail());
@@ -39,5 +34,15 @@ public class CustomerConverterImpl extends BaseConverter<CustomerDto, Customer> 
         dto.setEmail(entity.getEmail());
         dto.setPhone(entity.getPhone());
         return dto;
+    }
+
+    private Customer getOrCreateEmptyEntity(Long entityId) {
+        if (Objects.nonNull(entityId)) {
+            Optional<Customer> optEntity = customerRepository.findById(entityId);
+            if (optEntity.isPresent()) {
+                return optEntity.get();
+            }
+        }
+        return new Customer();
     }
 }
